@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Place It</title>
+    <link rel="stylesheet" href="assets/vendors/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="assets/vendors/slick.css" />
+    <link rel="stylesheet" href="assets/vendors/slick-theme.css" />
+
+    <link rel="stylesheet" href="assets/vendors/owl.carousel.min.css" />
+    <link
+      rel="shortcut icon"
+      href="assets/image/tatec_fav.svg"
+      type="image/x-icon"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body>
+    <header style="background-color: #262626">
+      <div class="container">
+        <div class="sub-header">
+          <div class="menu-btn">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+
+          <div class="side-bar">
+            <div class="close-btn">
+              <i class="fas fa-times"></i>
+            </div>
+
+            <div class="menu">
+              <div class="item"><a href="#">Dashboard</a></div>
+              <div class="item"><a href="#">Dashboard</a></div>
+              <div class="item"><a href="#">Dashboard</a></div>
+
+              <div class="item">
+                <a class="sub-btn" href="#"
+                  >Dashboard <i class="fas fa-angle-right dropdown"></i
+                ></a>
+
+                <div class="sub-menu">
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                </div>
+              </div>
+
+              <div class="item">
+                <a class="sub-btn" href="#"
+                  >Dashboard <i class="fas fa-angle-right dropdown"></i
+                ></a>
+
+                <div class="sub-menu">
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                </div>
+              </div>
+
+              <div class="item">
+                <a class="sub-btn" href="#"
+                  >Dashboard <i class="fas fa-angle-right dropdown"></i
+                ></a>
+
+                <div class="sub-menu">
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                </div>
+              </div>
+
+              <div class="item">
+                <a class="sub-btn" href="#"
+                  >Dashboard <i class="fas fa-angle-right dropdown"></i
+                ></a>
+
+                <div class="sub-menu">
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                </div>
+              </div>
+
+              <div class="item">
+                <a class="sub-btn" href="#"
+                  >Dashboard <i class="fas fa-angle-right dropdown"></i
+                ></a>
+
+                <div class="sub-menu">
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                </div>
+              </div>
+
+              <div class="item">
+                <a class="sub-btn" href="#"
+                  >Dashboard <i class="fas fa-angle-right dropdown"></i
+                ></a>
+
+                <div class="sub-menu">
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                  <a href="#" class="sub-item">Item</a>
+                </div>
+              </div>
+
+              <div class="item"><a href="#">Dashboard</a></div>
+            </div>
+          </div>
+
+          <div class="logo">
+            <img
+              class="desktop"
+              width="100px"
+              src="assets/image/tatech_logo2.svg"
+              alt=""
+            />
+          </div>
+
+          <div class="responsiveUser">
+            <a href="#" class="card">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+            <a href="./login.html" class="card">
+              <i class="fa-solid fa-user"></i>
+            </a>
+          </div>
+
+          <ul class="sub-header-list">
+            <li>
+              <a class="subitm" href="#">Forums</a>
+            </li>
+            <li>
+              <a class="subitm" href="#">Start Selling</a>
+            </li>
+            <li>
+              <a class="subitm" href="#">Our Product</a>
+            </li>
+            <li>
+              <div class="signIn">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <a href="./login.html" class="trigger">Sign In</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <nav class="nav-part">
+          <ul>
+            <li>
+              <a href="#" class="active"> Web Themes & Templates </a>
+            </li>
+            <li>
+              <a href="#"> Code </a>
+            </li>
+            <li>
+              <a href="#"> Video </a>
+            </li>
+            <li>
+              <a href="#"> Audio </a>
+            </li>
+            <li>
+              <a href="#"> Graphics </a>
+            </li>
+            <li>
+              <a href="#"> Photos </a>
+            </li>
+            <li>
+              <a href="#"> 3D Files </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="button-nav-wrapper">
+      <div class="button-nav">
+        <nav class="button-nav-components container">
+          <div class="header-components-menuItem">
+            <a href="#">All Items</a>
+            <div class="header-components-dropdown">
+              <nav>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+              </nav>
+            </div>
+          </div>
+          <div class="header-components-menuItem">
+            <a href="#"> Items</a>
+            <div class="header-components-dropdown">
+              <nav>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+              </nav>
+            </div>
+          </div>
+
+          <div class="header-components-menuItem">
+            <a href="#"> Items</a>
+            <div class="header-components-dropdown">
+              <nav>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+              </nav>
+            </div>
+          </div>
+
+          <div class="header-components-menuItem">
+            <a href="#"> Items</a>
+            <div class="header-components-dropdown">
+              <nav>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+              </nav>
+            </div>
+          </div>
+
+          <div class="header-components-menuItem">
+            <a href="#"> Items</a>
+            <div class="header-components-dropdown">
+              <nav>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+              </nav>
+            </div>
+          </div>
+
+          <div class="header-components-menuItem">
+            <a href="#"> Items</a>
+            <div class="header-components-dropdown">
+              <nav>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+              </nav>
+            </div>
+          </div>
+
+          <div class="header-components-menuItem">
+            <a href="#"> Items</a>
+            <div class="header-components-dropdown">
+              <nav>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+              </nav>
+            </div>
+          </div>
+
+          <div class="header-components-menuItem">
+            <a href="#"> Items</a>
+            <div class="header-components-dropdown">
+              <nav>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+              </nav>
+            </div>
+          </div>
+
+          <div class="header-components-menuItem">
+            <a href="#"> Items</a>
+            <div class="header-components-dropdown">
+              <nav>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+              </nav>
+            </div>
+          </div>
+
+          <div class="header-components-menuItem">
+            <a href="#"> Items</a>
+            <div class="header-components-dropdown">
+              <nav>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+                <a href="#">Popular Files</a>
+              </nav>
+            </div>
+          </div>
+
+          <div class="header-components-menuItem">
+            <a href="#"> Language</a>
+            <div class="header-components-dropdown language">
+              <nav>
+                <a class="item">
+                  <div class="text">AZE</div>
+                </a>
+                <a class="item">
+                  <div class="text">ENG</div>
+                </a>
+                <a class="item">
+                  <div class="text">RUS</div>
+                </a>
+              </nav>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <main>
+      <section class="placeit-bg-part">
+        <div class="hero-banner">
+          <div class="image-grid"></div>
+          <div
+            class="image-container"
+            aria-label="Design Made Easy with Ready-To-Use Templates!"
+          ></div>
+          <div class="copy-container">
+            <h1 class="title">
+              Everybody is creative,
+              <strong>Placeit makes you a creator</strong>
+            </h1>
+            <h2 class="subtitle">
+              Become an expert with our ready-to-use templates.
+            </h2>
+            <a class="cta" href="#"> Start Now! </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="cars-part-placeit">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-2 col-xl-2 col-xxl-2 col-md-3 col-sm-4 col-6">
+              <div class="author-carousel-item">
+                <div class="img-container">
+                  <a href="#">
+                    <img src="assets/image/placeit-2.jpg" alt="" />
+                  </a>
+                </div>
+                <div class="img-description">
+                  <a href="#" title="Creators' Picks">
+                    <div class="number">135</div>
+                    <div class="category"><strong>Creators' Picks</strong></div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2 col-xl-2 col-xxl-2 col-md-3 col-sm-4 col-6">
+              <div class="author-carousel-item">
+                <div class="img-container">
+                  <a href="#">
+                    <img src="assets/image/placeit3.jpg" alt="" />
+                  </a>
+                </div>
+                <div class="img-description">
+                  <a href="#" title="Creators' Picks">
+                    <div class="number">135</div>
+                    <div class="category"><strong>Creators' Picks</strong></div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2 col-xl-2 col-xxl-2 col-md-3 col-sm-4 col-6">
+              <div class="author-carousel-item">
+                <div class="img-container">
+                  <a href="#">
+                    <img src="assets/image/placeit4.jpg" alt="" />
+                  </a>
+                </div>
+                <div class="img-description">
+                  <a href="#" title="Creators' Picks">
+                    <div class="number">135</div>
+                    <div class="category"><strong>Creators' Picks</strong></div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2 col-xl-2 col-xxl-2 col-md-3 col-sm-4 col-6">
+              <div class="author-carousel-item">
+                <div class="img-container">
+                  <a href="#">
+                    <img src="assets/image/placeit5.jpg" alt="" />
+                  </a>
+                </div>
+                <div class="img-description">
+                  <a href="#" title="Creators' Picks">
+                    <div class="number">135</div>
+                    <div class="category"><strong>Creators' Picks</strong></div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2 col-xl-2 col-xxl-2 col-md-3 col-sm-4 col-6">
+              <div class="author-carousel-item">
+                <div class="img-container">
+                  <a href="#">
+                    <img src="assets/image/placeot6.jpg" alt="" />
+                  </a>
+                </div>
+                <div class="img-description">
+                  <a href="#" title="Creators' Picks">
+                    <div class="number">135</div>
+                    <div class="category"><strong>Creators' Picks</strong></div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2 col-xl-2 col-xxl-2 col-md-3 col-sm-4 col-6">
+              <div class="author-carousel-item">
+                <div class="img-container">
+                  <a href="#">
+                    <img src="assets/image/placeit-2.jpg" alt="" />
+                  </a>
+                </div>
+                <div class="img-description">
+                  <a href="#" title="Creators' Picks">
+                    <div class="number">135</div>
+                    <div class="category"><strong>Creators' Picks</strong></div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="homepage-message" style="background-color: #fff;">
+        <div class="home-page-section">
+          <div class="custom-page-divider"></div>
+          <div class="product-highlight free-templates-section">
+            <a href="/free-templates">
+              <video
+                autoplay=""
+                loop="true"
+                class="elementor-video lazy-video"
+                controlslist="nodownload"
+                muted="muted"
+                disableremoteplayback=""
+                playsinline=""
+                poster="https://d2n9ha3hrkss16.cloudfront.net/custom-pages/2021-home-page/Freebies-Templates.jpg"
+              >
+                <source
+                  data-src="https://d2n9ha3hrkss16.cloudfront.net/custom-pages/2021-home-page/Free-Templates.mp4"
+                  type="video/mp4"
+                  src="https://d2n9ha3hrkss16.cloudfront.net/custom-pages/2021-home-page/Free-Templates.mp4"
+                />
+              </video>
+            </a>
+            <div class="content">
+              <h1 class="h1-title">
+                Thousands of <span>Free Templates</span> Just for You!
+              </h1>
+              <p class="p-description">
+                The easiest way to create professional designs for free!<br />
+                Choose from our ever changing library of free mockups, designs,
+                videos and logos.
+              </p>
+              <div class="button-container">
+                <a href="/free-templates"> Start Creating for Free </a>
+              </div>
+            </div>
+          </div>
+          <div class="custom-page-divider"></div>
+          <div class="product-highlight mockups-section reverse">
+            <a href="/c/mockups">
+              <video
+                autoplay=""
+                loop="true"
+                class="elementor-video lazy-video"
+                controlslist="nodownload"
+                muted="muted"
+                disableremoteplayback=""
+                playsinline=""
+                poster="https://d3fp4qxxe5dwe.cloudfront.net/custom-pages/2021-home-page/Mockups.jpg"
+              >
+                <source
+                  data-src="https://d3fp4qxxe5dwe.cloudfront.net/custom-pages/2021-home-page/Mockups.mp4"
+                  type="video/mp4"
+                  src="https://d3fp4qxxe5dwe.cloudfront.net/custom-pages/2021-home-page/Mockups.mp4"
+                />
+              </video>
+            </a>
+            <div class="content">
+              <h1 class="h1-title">
+                The Largest Collection of <span>Mockups</span> on the Internet!
+              </h1>
+              <p class="p-description">
+                Drag and drop your designs to our mockups to create beautiful
+                product shots!
+              </p>
+              <div class="button-container">
+                <a href="/c/mockups"> Check Out our Mockup Library </a>
+              </div>
+            </div>
+          </div>
+          <div class="custom-page-divider"></div>
+          <div class="product-highlight gaming-section">
+            <a href="/logo-maker?industry=Gaming&amp;industryId=Gaming">
+              <video
+                autoplay=""
+                loop="true"
+                class="elementor-video lazy-video"
+                controlslist="nodownload"
+                muted="muted"
+                disableremoteplayback=""
+                playsinline=""
+                poster="https://d1wnwqwep8qkqc.cloudfront.net/custom-pages/2021-home-page/Gaming-Templates.jpg"
+              >
+                <source
+                  data-src="https://d1wnwqwep8qkqc.cloudfront.net/custom-pages/2021-home-page/Gaming-Templates.mp4"
+                  type="video/mp4"
+                  src="https://d1wnwqwep8qkqc.cloudfront.net/custom-pages/2021-home-page/Gaming-Templates.mp4"
+                />
+              </video>
+            </a>
+            <div class="content">
+              <h1 class="h1-title">
+                Create Your Own <span>Gaming Designs</span> in No Time
+              </h1>
+              <p class="p-description">
+                Everything you need to brand your Twitch stream or YouTube
+                channel is right here so you can start streaming today!
+              </p>
+              <div class="button-container">
+                <a href="/logo-maker?industry=Gaming&amp;industryId=Gaming">
+                  Start with a Gaming Logo
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="custom-page-divider"></div>
+          <div class="product-highlight logo-section reverse">
+            <a href="/logo-maker">
+              <video
+                autoplay=""
+                loop="true"
+                class="elementor-video lazy-video"
+                controlslist="nodownload"
+                muted="muted"
+                disableremoteplayback=""
+                playsinline=""
+                poster="https://d2n9ha3hrkss16.cloudfront.net/custom-pages/2021-home-page/Logo-Maker.jpg"
+              >
+                <source
+                  data-src="https://d2n9ha3hrkss16.cloudfront.net/custom-pages/2021-home-page/Logo-Maker.mp4"
+                  type="video/mp4"
+                  src="https://d2n9ha3hrkss16.cloudfront.net/custom-pages/2021-home-page/Logo-Maker.mp4"
+                />
+              </video>
+            </a>
+            <div class="content">
+              <h1 class="h1-title">
+                Make a <span>Free Logo</span> for Your Business
+              </h1>
+              <p class="p-description">
+                Create a professional logo design using our premade templates -
+                we have thousands of options from any industry!
+              </p>
+              <div class="button-container">
+                <a href="/logo-maker"> Make a Logo </a>
+              </div>
+            </div>
+          </div>
+          <div class="custom-page-divider"></div>
+        </div>
+        <link
+          href="https://placeit-images.s3.amazonaws.com/homepage/home_page_d.css"
+          rel="stylesheet"
+          as="style"
+          onload="this.onload=null;this.rel='stylesheet'"
+        />
+        <script
+          defer="true"
+          type="text/javascript"
+          src="https://placeit-images.s3.amazonaws.com/homepage/home_page_d.js"
+        ></script>
+      </div>
+
+      <div class="footer-wrapper" style="visibility: visible;background-color: #fff;">
+  
+        <div class="cta-container " id="cta-block-section" data-gtm-vis-recent-on-screen-9441090_410="1533" data-gtm-vis-first-on-screen-9441090_410="1533" data-gtm-vis-total-visible-time-9441090_410="100" data-gtm-vis-has-fired-9441090_410="1">
+        <div class="cta-title">
+          <h2>Make Unlimited Mockups, Designs, Logos and Videos</h2>
+        </div>
+        <div class="cta-content">
+          <div class="cta-content-image">
+            <img alt="Slideshow Video Makers" class=" ls-is-cached lazyloaded" data-src="https://assets-placeit-net.s3-accelerate.amazonaws.com/uploads/cta_block/4/optimized_global.png" src="https://assets-placeit-net.s3-accelerate.amazonaws.com/uploads/cta_block/4/optimized_global.png">
+          </div>
+          <div class="cta-content-controls">
+            <div class="cta-content-controls-buttons">
+              <div class="plan-button-wrapper plan-monthly">
+                <div class="period-title">
+                  <p><span class="period-title_name">MONTHLY</span> <span class="discount"></span></p>
+                </div>
+                <a class="cta-button cta-button-monthly" data-period="monthly" role="button">
+                  <span>
+                    <span class="monthly-original-price original-price" style="display: none;">$14.95</span>
+                    <span class="monthly-price"><span class="final-price">$14.95</span><span class="price-label"> / Month</span></span>
+                  </span>
+                </a>
+              </div>
+              <div class="plan-button-wrapper plan-annual">
+                <div class="period-title">
+                  <p><span class="period-title_name">ANNUAL</span> <span class="discount"></span></p>
+                </div>
+                <a class="cta-button cta-button-annual" data-period="annual" role="button">
+                  <p>
+                    <span class="annual-original-price original-price" style="display: none;">$119.88</span>
+                    <span class="annual-price">
+                      <span class="final-price">$119.88</span>
+                      <span class="price-label"> / Year</span>
+                    </span>
+                  </p>
+                  <p class="annual-disclaimer">
+                  Just <span class="annual-monthly-amount">$9.99</span> / Month,
+                  <span class="annual-discount">Save <span class="annual-save">33</span>%</span>
+                  </p>
+                </a>
+              </div>
+            </div>
+            <div class="subscription-cta-container"><div class="subscription-cta-container placeit-widget">            <h2 class="subscription-title">Unlimited Subscription</h2>            <div class="subscription-price-container">                <span class="from-txt">From:</span> <span class="subscription-price original-price">$9.99</span>                <span class="subscription-discount-price final-price" style="display: none;"> </span>                <span class="subscription-price-month">/mo*</span>            </div>             <p class="subscription-subtitle">Unlimited Downloads</p>            <button class="subscription-cta">Start Now</button>            <span class="subscription-info-footer"><p><span>*</span><strong>Cancel anytime.</strong> Unlimited subscription billed yearly in USD.</p>    <p style="font-size: 8.5px">1 month minimum commitment if subscribers have downloaded any templates. </p></span>        </div></div>
+          </div>
+        </div>
+        </div>
+      
+      </div>
+    </main>
+
+    <footer
+      class="shared-global_footer-footer_component__root"
+      data-turbo="false"
+    >
+      <div class="shared-global_footer-footer_component__topContainer">
+        <div class="shared-global_footer-footer_component__topLinks">
+          <nav
+            class="shared-global_footer-footer_component__topLinksGroup"
+            aria-label="Envato Market"
+          >
+            <strong
+              class="shared-global_footer-footer_component__topLinksGroupTitle"
+              >TaTech Market</strong
+            >
+            <a
+              class="shared-global_footer-footer_component__topLink"
+              href="/legal/market"
+            >
+              Terms
+            </a>
+            <a
+              class="shared-global_footer-footer_component__topLink"
+              href="/licenses"
+            >
+              Licenses
+            </a>
+            <a class="shared-global_footer-footer_component__topLink" href="#">
+              Market API
+            </a>
+            <a class="shared-global_footer-footer_component__topLink" href="#">
+              Become an affiliate
+            </a>
+          </nav>
+          <nav
+            class="shared-global_footer-footer_component__topLinksGroup"
+            aria-label="Help"
+          >
+            <strong
+              class="shared-global_footer-footer_component__topLinksGroupTitle"
+              >Help</strong
+            >
+            <a class="shared-global_footer-footer_component__topLink" href="#">
+              Help Center
+            </a>
+            <a class="shared-global_footer-footer_component__topLink" href="#">
+              Authors
+            </a>
+          </nav>
+          <nav
+            class="shared-global_footer-footer_component__topLinksGroup"
+            aria-label="Our Community"
+          >
+            <strong
+              class="shared-global_footer-footer_component__topLinksGroupTitle"
+              >Our Community</strong
+            >
+            <a class="shared-global_footer-footer_component__topLink" href="#">
+              Community
+            </a>
+            <a class="shared-global_footer-footer_component__topLink" href="#">
+              Blog
+            </a>
+            <a class="shared-global_footer-footer_component__topLink" href="#">
+              Forums
+            </a>
+            <a class="shared-global_footer-footer_component__topLink" href="#">
+              Meetups
+            </a>
+          </nav>
+          <nav
+            class="shared-global_footer-footer_component__topLinksGroup"
+            aria-label="Meet Envato"
+          >
+            <strong
+              class="shared-global_footer-footer_component__topLinksGroupTitle"
+              >Meet TaTech</strong
+            >
+            <a class="shared-global_footer-footer_component__topLink" href="#">
+              About TaTech
+            </a>
+            <a class="shared-global_footer-footer_component__topLink" href="#">
+              Careers
+            </a>
+            <a class="shared-global_footer-footer_component__topLink" href="#">
+              Privacy Policy
+            </a>
+            <a class="shared-global_footer-footer_component__topLink" href="#">
+              Sitemap
+            </a>
+          </nav>
+        </div>
+        <div class="shared-global_footer-footer_component__topStats">
+          <div class="shared-global_footer-footer_component__topStatsMeta">
+            <img
+              loading="lazy"
+              class="shared-global_footer-footer_component__logo"
+              alt="Envato Market"
+              width="80px"
+              src="assets/image/tatech_logo2.svg"
+            />
+            <ul class="shared-global_footer-footer_component__statsList">
+              <li class="shared-global_footer-footer_component__statsListItem">
+                <span class="shared-global_footer-footer_component__stats"
+                  >73,087,765</span
+                >
+                items sold
+              </li>
+              <li class="shared-global_footer-footer_component__statsListItem">
+                <span class="shared-global_footer-footer_component__stats"
+                  >$1,109,814,735</span
+                >
+                community earnings
+              </li>
+            </ul>
+          </div>
+          <div class="shared-global_footer-footer_component__bottomBCorp">
+            <a
+              href="#"
+              class="shared-global_footer-footer_component__bcorpLink"
+              target="_blank"
+              rel="noopener"
+            >
+              <img
+                loading="lazy"
+                width="50"
+                height="84"
+                alt="B Corp logo"
+                class="shared-global_footer-footer_component__bcorpLogo"
+                src="https://assets.market-storefront.envato-static.com/storefront/assets/logos/bcorp-fbdd18d9fd7274a0e6591e67408e26c55df20358c3c4eee496117b16874e1749.svg"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="shared-global_footer-footer_component__bottomContainer">
+        <nav
+          class="shared-global_footer-footer_component__bottomSocial"
+          itemscope=""
+          itemtype="http://schema.org/Organization"
+          aria-label="social"
+        >
+          <a
+            class="shared-global_footer-footer_component__socialLink"
+            rel="nofollow"
+            aria-label="Twitter"
+            href="#"
+          >
+            <img
+              loading="lazy"
+              alt="Twitter"
+              title="Twitter"
+              src="https://assets.market-storefront.envato-static.com/storefront/assets/social-icons/icon-twitter-6ad889010d07b5b6caa1e8c40d71131641bb97d9605ef8ef62d8cfe8ace6a817.svg"
+              width="22"
+              height="22"
+          /></a>
+          <a
+            class="shared-global_footer-footer_component__socialLink"
+            rel="nofollow"
+            aria-label="Facebook"
+            href="#"
+          >
+            <img
+              loading="lazy"
+              alt="Facebook"
+              title="Facebook"
+              src="https://assets.market-storefront.envato-static.com/storefront/assets/social-icons/icon-facebook-e29111786aec8117c019d01a351887605c22c29dd9c363b355789c06436aaf2f.svg"
+              width="22"
+              height="22"
+          /></a>
+          <a
+            class="shared-global_footer-footer_component__socialLink"
+            rel="nofollow"
+            aria-label="YouTube"
+            href="https://www.youtube.com/user/Envato"
+          >
+            <img
+              loading="lazy"
+              alt="YouTube"
+              title="YouTube"
+              src="https://assets.market-storefront.envato-static.com/storefront/assets/social-icons/icon-youtube-6a45b3f582b34fb83cf3d2a4600f50f0c4431309a4434f853eac416be16aa37c.svg"
+              width="22"
+              height="22"
+          /></a>
+          <a
+            class="shared-global_footer-footer_component__socialLink"
+            rel="nofollow"
+            aria-label="Instagram"
+            href="#"
+          >
+            <img
+              loading="lazy"
+              alt="Instagram"
+              title="Instagram"
+              src="https://assets.market-storefront.envato-static.com/storefront/assets/social-icons/icon-instagram-614e390114cada173d0094549cb1f260929b6432d3a1e6cff484302e4aabba09.svg"
+              width="22"
+              height="22"
+          /></a>
+          <a
+            class="shared-global_footer-footer_component__socialLink"
+            rel="nofollow"
+            aria-label="Pinterest"
+            href="#"
+          >
+            <img
+              loading="lazy"
+              alt="Pinterest"
+              title="Pinterest"
+              src="https://assets.market-storefront.envato-static.com/storefront/assets/social-icons/icon-pinterest-bb3b4207aa129cfef2e6fc210119c48c132ddb3a3a0c4c06c0acc128201128b7.svg"
+              width="22"
+              height="22"
+          /></a>
+        </nav>
+        <div class="shared-global_footer-footer_component__bottomLinks">
+          <nav
+            class="shared-global_footer-footer_component__companyLinks"
+            aria-label="company"
+          >
+            <a
+              class="shared-global_footer-footer_component__companyLink"
+              data-action="analytics-event#send"
+              data-analytics-event='{"hitType":"event","eventCategory":"footer nav","eventAction":"click;a","eventLabel":"Envato.com"}'
+              href="#"
+              >TaTech.com</a
+            >
+            <a
+              class="shared-global_footer-footer_component__companyLink"
+              data-action="analytics-event#send"
+              data-analytics-event='{"hitType":"event","eventCategory":"footer nav","eventAction":"click;a","eventLabel":"Envato Elements"}'
+              href="#"
+              >TeTech Elements</a
+            >
+            <a
+              class="shared-global_footer-footer_component__companyLink"
+              data-action="analytics-event#send"
+              data-analytics-event='{"hitType":"event","eventCategory":"footer nav","eventAction":"click;a","eventLabel":"Placeit by Envato"}'
+              href="https://placeit.net"
+              >Placeit by TaTech</a
+            >
+            <a
+              class="shared-global_footer-footer_component__companyLink"
+              data-action="analytics-event#send"
+              data-analytics-event='{"hitType":"event","eventCategory":"footer nav","eventAction":"click;a","eventLabel":"Envato Tuts+"}'
+              href="https://tutsplus.com"
+              >TaTech Tuts+</a
+            >
+            <a
+              class="shared-global_footer-footer_component__companyLink"
+              data-action="analytics-event#send"
+              data-analytics-event='{"hitType":"event","eventCategory":"footer nav","eventAction":"click;a","eventLabel":"All Products"}'
+              href="#"
+              >All Products</a
+            >
+            <a
+              class="shared-global_footer-footer_component__companyLink"
+              data-action="analytics-event#send"
+              data-analytics-event='{"hitType":"event","eventCategory":"footer nav","eventAction":"click;a","eventLabel":"Sitemap"}'
+              href="#"
+              >Sitemap</a
+            >
+          </nav>
+          <div class="shared-global_footer-footer_component__notice">
+            Price is in US dollars and excludes tax
+          </div>
+          <div class="shared-global_footer-footer_component__copyrights">
+            © 2023 TaTech Pty Ltd. Trademarks and brands are the property of
+            their respective owners.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/vendors/jquery-1.12.4.min.js"></script>
+    <script src="assets/vendors/bootstrap.min.js"></script>
+    <script src="assets/vendors/owl.carousel.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>

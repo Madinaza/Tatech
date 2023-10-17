@@ -1,0 +1,749 @@
+(function () {
+  'use strict';
+
+  // Key map
+  const ENTER = 13;
+  const ESCAPE = 27;
+  const SPACE = 32;
+  const UP = 38;
+  const DOWN = 40;
+  const TAB = 9;
+
+  function toggleNavigation(toggle, menu) {
+    const isExpanded = menu.getAttribute("aria-expanded") === "true";
+    menu.setAttribute("aria-expanded", !isExpanded);
+    toggle.setAttribute("aria-expanded", !isExpanded);
+  }
+
+  function closeNavigation(toggle, menu) {
+    menu.setAttribute("aria-expanded", false);
+    toggle.setAttribute("aria-expanded", false);
+    toggle.focus();
+  }
+
+  // Navigation
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const menuButton = document.querySelector(".header .menu-button-mobile");
+    const menuList = document.querySelector("#user-nav-mobile");
+
+    menuButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+      toggleNavigation(menuButton, menuList);
+    });
+
+    menuList.addEventListener("keyup", (event) => {
+      if (event.keyCode === ESCAPE) {
+        event.stopPropagation();
+        closeNavigation(menuButton, menuList);
+      }
+    });
+
+    // Toggles expanded aria to collapsible elements
+    const collapsible = document.querySelectorAll(
+      ".collapsible-nav, .collapsible-sidebar"
+    );
+
+    collapsible.forEach((element) => {
+      const toggle = element.querySelector(
+        ".collapsible-nav-toggle, .collapsible-sidebar-toggle"
+      );
+
+      element.addEventListener("click", () => {
+        toggleNavigation(toggle, element);
+      });
+
+      element.addEventListener("keyup", (event) => {
+        console.log("escape");
+        if (event.keyCode === ESCAPE) {
+          closeNavigation(toggle, element);
+        }
+      });
+    });
+
+    // If multibrand search has more than 5 help centers or categories collapse the list
+    const multibrandFilterLists = document.querySelectorAll(
+      ".multibrand-filter-list"
+    );
+    multibrandFilterLists.forEach((filter) => {
+      if (filter.children.length > 6) {
+        // Display the show more button
+        const trigger = filter.querySelector(".see-all-filters");
+        trigger.setAttribute("aria-hidden", false);
+
+        // Add event handler for click
+        trigger.addEventListener("click", (event) => {
+          event.stopPropagation();
+          trigger.parentNode.removeChild(trigger);
+          filter.classList.remove("multibrand-filter-list--collapsed");
+        });
+      }
+    });
+  });
+
+  function Dropdown(toggle, menu) {
+    this.toggle = toggle;
+    this.menu = menu;
+
+    this.menuPlacement = {
+      top: menu.classList.contains("dropdown-menu-top"),
+      end: menu.classList.contains("dropdown-menu-end"),
+    };
+
+    this.toggle.addEventListener("click", this.clickHandler.bind(this));
+    this.toggle.addEventListener("keydown", this.toggleKeyHandler.bind(this));
+    this.menu.addEventListener("keydown", this.menuKeyHandler.bind(this));
+  }
+
+  Dropdown.prototype = {
+    get isExpanded() {
+      return this.menu.getAttribute("aria-expanded") === "true";
+    },
+
+    get menuItems() {
+      return Array.prototype.slice.call(
+        this.menu.querySelectorAll("[role='menuitem']")
+      );
+    },
+
+    dismiss: function () {
+      if (!this.isExpanded) return;
+
+      this.menu.setAttribute("aria-expanded", false);
+      this.menu.classList.remove("dropdown-menu-end", "dropdown-menu-top");
+    },
+
+    open: function () {
+      if (this.isExpanded) return;
+
+      this.menu.setAttribute("aria-expanded", true);
+      this.handleOverflow();
+    },
+
+    handleOverflow: function () {
+      var rect = this.menu.getBoundingClientRect();
+
+      var overflow = {
+        right: rect.left < 0 || rect.left + rect.width > window.innerWidth,
+        bottom: rect.top < 0 || rect.top + rect.height > window.innerHeight,
+      };
+
+      if (overflow.right || this.menuPlacement.end) {
+        this.menu.classList.add("dropdown-menu-end");
+      }
+
+      if (overflow.bottom || this.menuPlacement.top) {
+        this.menu.classList.add("dropdown-menu-top");
+      }
+
+      if (this.menu.getBoundingClientRect().top < 0) {
+        this.menu.classList.remove("dropdown-menu-top");
+      }
+    },
+
+    focusNextMenuItem: function (currentItem) {
+      if (!this.menuItems.length) return;
+
+      var currentIndex = this.menuItems.indexOf(currentItem);
+      var nextIndex =
+        currentIndex === this.menuItems.length - 1 || currentIndex < 0
+          ? 0
+          : currentIndex + 1;
+
+      this.menuItems[nextIndex].focus();
+    },
+
+    focusPreviousMenuItem: function (currentItem) {
+      if (!this.menuItems.length) return;
+
+      var currentIndex = this.menuItems.indexOf(currentItem);
+      var previousIndex =
+        currentIndex <= 0 ? this.menuItems.length - 1 : currentIndex - 1;
+
+      this.menuItems[previousIndex].focus();
+    },
+
+    clickHandler: function () {
+      if (this.isExpanded) {
+        this.dismiss();
+      } else {
+        this.open();
+      }
+    },
+
+    toggleKeyHandler: function (e) {
+      switch (e.keyCode) {
+        case ENTER:
+        case SPACE:
+        case DOWN:
+          e.preventDefault();
+          this.open();
+          this.focusNextMenuItem();
+          break;
+        case UP:
+          e.preventDefault();
+          this.open();
+          this.focusPreviousMenuItem();
+          break;
+        case ESCAPE:
+          this.dismiss();
+          this.toggle.focus();
+          break;
+      }
+    },
+
+    menuKeyHandler: function (e) {
+      var firstItem = this.menuItems[0];
+      var lastItem = this.menuItems[this.menuItems.length - 1];
+      var currentElement = e.target;
+
+      switch (e.keyCode) {
+        case ESCAPE:
+          this.dismiss();
+          this.toggle.focus();
+          break;
+        case DOWN:
+          e.preventDefault();
+          this.focusNextMenuItem(currentElement);
+          break;
+        case UP:
+          e.preventDefault();
+          this.focusPreviousMenuItem(currentElement);
+          break;
+        case TAB:
+          if (e.shiftKey) {
+            if (currentElement === firstItem) {
+              this.dismiss();
+            } else {
+              e.preventDefault();
+              this.focusPreviousMenuItem(currentElement);
+            }
+          } else if (currentElement === lastItem) {
+            this.dismiss();
+          } else {
+            e.preventDefault();
+            this.focusNextMenuItem(currentElement);
+          }
+          break;
+        case ENTER:
+        case SPACE:
+          e.preventDefault();
+          currentElement.click();
+          break;
+      }
+    },
+  };
+
+  // Drodowns
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const dropdowns = [];
+    const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+
+    dropdownToggles.forEach((toggle) => {
+      const menu = toggle.nextElementSibling;
+      if (menu && menu.classList.contains("dropdown-menu")) {
+        dropdowns.push(new Dropdown(toggle, menu));
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      dropdowns.forEach((dropdown) => {
+        if (!dropdown.toggle.contains(event.target)) {
+          dropdown.dismiss();
+        }
+      });
+    });
+  });
+
+  // Share
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const links = document.querySelectorAll(".share a");
+    links.forEach((anchor) => {
+      anchor.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.open(anchor.href, "", "height = 500, width = 500");
+      });
+    });
+  });
+
+  // Vanilla JS debounce function, by Josh W. Comeau:
+  // https://www.joshwcomeau.com/snippets/javascript/debounce/
+  function debounce(callback, wait) {
+    let timeoutId = null;
+    return (...args) => {
+      window.clearTimeout(timeoutId);
+      timeoutId = window.setTimeout(() => {
+        callback.apply(null, args);
+      }, wait);
+    };
+  }
+
+  // Define variables for search field
+  let searchFormFilledClassName = "search-has-value";
+  let searchFormSelector = "form[role='search']";
+  /* || Envato Search Button Script JS Author: Envato Version: 1.1.0 */
+  // Allows the new submit button to be found by class name
+  let searchFormSubmitButton = "search-submit-icon";  
+  /* || END Envato Search Button Script JS Author: Envato Version: 1.1.0 */
+
+  // Clear the search input, and then return focus to it
+  function clearSearchInput(event) {
+    event.target
+      .closest(searchFormSelector)
+      .classList.remove(searchFormFilledClassName);
+
+    let input;
+    if (event.target.tagName === "INPUT") {
+      input = event.target;
+    } else if (event.target.tagName === "BUTTON") {
+      input = event.target.previousElementSibling;
+    } else {
+      input = event.target.closest("button").previousElementSibling;
+    }
+    input.value = "";
+    input.focus();
+  }
+
+  // Have the search input and clear button respond
+  // when someone presses the escape key, per:
+  // https://twitter.com/adambsilver/status/1152452833234554880
+  function clearSearchInputOnKeypress(event) {
+    const searchInputDeleteKeys = ["Delete", "Escape"];
+    if (searchInputDeleteKeys.includes(event.key)) {
+      clearSearchInput(event);
+    }
+  }
+
+  // Create an HTML button that all users -- especially keyboard users --
+  // can interact with, to clear the search input.
+  // To learn more about this, see:
+  // https://adrianroselli.com/2019/07/ignore-typesearch.html#Delete
+  // https://www.scottohara.me/blog/2022/02/19/custom-clear-buttons.html
+  function buildClearSearchButton(inputId) {
+    const button = document.createElement("button");
+    button.setAttribute("type", "button");
+    button.setAttribute("aria-controls", inputId);
+    button.classList.add("clear-button");
+    const buttonLabel = window.searchClearButtonLabelLocalized;
+    const icon = `<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' focusable='false' role='img' viewBox='0 0 12 12' aria-label='${buttonLabel}'><path stroke='currentColor' stroke-linecap='round' stroke-width='2' d='M3 9l6-6m0 6L3 3'/></svg>`;
+    button.innerHTML = icon;
+    button.addEventListener("click", clearSearchInput);
+    button.addEventListener("keyup", clearSearchInputOnKeypress);
+    return button;
+  }
+  
+  // Append the clear button to the search form
+  function appendClearSearchButton(input, form) {
+    const searchClearButton = buildClearSearchButton(input.id);
+    /* || Envato Search Button Script JS Author: Envato Version: 1.1.0 */
+    // Fetch the new submit button that's been added to the form
+    var newSubmitButton = form.getElementsByClassName(searchFormSubmitButton)[0];
+    form.insertBefore(searchClearButton, newSubmitButton); 
+    /* || END Envato Search Button Script JS Author: Envato Version: 1.1.0 */
+    // form.append(searchClearButton); [Default Zendesk script removed]
+    if (input.value.length > 0) {
+      form.classList.add(searchFormFilledClassName);
+    }
+  }
+
+  // Add a class to the search form when the input has a value;
+  // Remove that class from the search form when the input doesn't have a value.
+  // Do this on a delay, rather than on every keystroke.
+  const toggleClearSearchButtonAvailability = debounce((event) => {
+    const form = event.target.closest(searchFormSelector);
+    form.classList.toggle(
+      searchFormFilledClassName,
+      event.target.value.length > 0
+    );
+  }, 200);
+
+  // Search
+
+  window.addEventListener("DOMContentLoaded", () => {
+    // Set up clear functionality for the search field
+    const searchForms = [...document.querySelectorAll(searchFormSelector)];
+    const searchInputs = searchForms.map((form) =>
+      form.querySelector("input[type='search']")
+    );
+    searchInputs.forEach((input) => {
+      appendClearSearchButton(input, input.closest(searchFormSelector));
+      input.addEventListener("keyup", clearSearchInputOnKeypress);
+      input.addEventListener("keyup", toggleClearSearchButtonAvailability);
+    });
+  });
+
+  const key = "returnFocusTo";
+
+  function saveFocus() {
+    const activeElementId = document.activeElement.getAttribute("id");
+    sessionStorage.setItem(key, "#" + activeElementId);
+  }
+
+  function returnFocus() {
+    const returnFocusTo = sessionStorage.getItem(key);
+    if (returnFocusTo) {
+      sessionStorage.removeItem("returnFocusTo");
+      const returnFocusToEl = document.querySelector(returnFocusTo);
+      returnFocusToEl && returnFocusToEl.focus && returnFocusToEl.focus();
+    }
+  }
+
+  // Forms
+
+  window.addEventListener("DOMContentLoaded", () => {
+    // In some cases we should preserve focus after page reload
+    returnFocus();
+
+    // show form controls when the textarea receives focus or back button is used and value exists
+    const commentContainerTextarea = document.querySelector(
+      ".comment-container textarea"
+    );
+    const commentContainerFormControls = document.querySelector(
+      ".comment-form-controls, .comment-ccs"
+    );
+
+    if (commentContainerTextarea) {
+      commentContainerTextarea.addEventListener(
+        "focus",
+        function focusCommentContainerTextarea() {
+          commentContainerFormControls.style.display = "block";
+          commentContainerTextarea.removeEventListener(
+            "focus",
+            focusCommentContainerTextarea
+          );
+        }
+      );
+
+      if (commentContainerTextarea.value !== "") {
+        commentContainerFormControls.style.display = "block";
+      }
+    }
+
+    // Expand Request comment form when Add to conversation is clicked
+    const showRequestCommentContainerTrigger = document.querySelector(
+      ".request-container .comment-container .comment-show-container"
+    );
+    const requestCommentFields = document.querySelectorAll(
+      ".request-container .comment-container .comment-fields"
+    );
+    const requestCommentSubmit = document.querySelector(
+      ".request-container .comment-container .request-submit-comment"
+    );
+
+    if (showRequestCommentContainerTrigger) {
+      showRequestCommentContainerTrigger.addEventListener("click", () => {
+        showRequestCommentContainerTrigger.style.display = "none";
+        Array.prototype.forEach.call(requestCommentFields, (element) => {
+          element.style.display = "block";
+        });
+        requestCommentSubmit.style.display = "inline-block";
+
+        if (commentContainerTextarea) {
+          commentContainerTextarea.focus();
+        }
+      });
+    }
+
+    // Mark as solved button
+    const requestMarkAsSolvedButton = document.querySelector(
+      ".request-container .mark-as-solved:not([data-disabled])"
+    );
+    const requestMarkAsSolvedCheckbox = document.querySelector(
+      ".request-container .comment-container input[type=checkbox]"
+    );
+    const requestCommentSubmitButton = document.querySelector(
+      ".request-container .comment-container input[type=submit]"
+    );
+
+    if (requestMarkAsSolvedButton) {
+      requestMarkAsSolvedButton.addEventListener("click", () => {
+        requestMarkAsSolvedCheckbox.setAttribute("checked", true);
+        requestCommentSubmitButton.disabled = true;
+        requestMarkAsSolvedButton.setAttribute("data-disabled", true);
+        requestMarkAsSolvedButton.form.submit();
+      });
+    }
+
+    // Change Mark as solved text according to whether comment is filled
+    const requestCommentTextarea = document.querySelector(
+      ".request-container .comment-container textarea"
+    );
+
+    const usesWysiwyg =
+      requestCommentTextarea &&
+      requestCommentTextarea.dataset.helper === "wysiwyg";
+
+    function isEmptyPlaintext(s) {
+      return s.trim() === "";
+    }
+
+    function isEmptyHtml(xml) {
+      const doc = new DOMParser().parseFromString(`<_>${xml}</_>`, "text/xml");
+      const img = doc.querySelector("img");
+      return img === null && isEmptyPlaintext(doc.children[0].textContent);
+    }
+
+    const isEmpty = usesWysiwyg ? isEmptyHtml : isEmptyPlaintext;
+
+    if (requestCommentTextarea) {
+      requestCommentTextarea.addEventListener("input", () => {
+        if (isEmpty(requestCommentTextarea.value)) {
+          if (requestMarkAsSolvedButton) {
+            requestMarkAsSolvedButton.innerText =
+              requestMarkAsSolvedButton.getAttribute("data-solve-translation");
+          }
+        } else {
+          if (requestMarkAsSolvedButton) {
+            requestMarkAsSolvedButton.innerText =
+              requestMarkAsSolvedButton.getAttribute(
+                "data-solve-and-submit-translation"
+              );
+          }
+        }
+      });
+    }
+
+    const selects = document.querySelectorAll(
+      "#request-status-select, #request-organization-select"
+    );
+
+    selects.forEach((element) => {
+      element.addEventListener("change", (event) => {
+        event.stopPropagation();
+        saveFocus();
+        element.form.submit();
+      });
+    });
+
+    // Submit requests filter form on search in the request list page
+    const quickSearch = document.querySelector("#quick-search");
+    if (quickSearch) {
+      quickSearch.addEventListener("keyup", (event) => {
+        if (event.keyCode === ENTER) {
+          event.stopPropagation();
+          saveFocus();
+          quickSearch.form.submit();
+        }
+      });
+    }
+
+    // Submit organization form in the request page
+    const requestOrganisationSelect = document.querySelector(
+      "#request-organization select"
+    );
+
+    if (requestOrganisationSelect) {
+      requestOrganisationSelect.addEventListener("change", () => {
+        requestOrganisationSelect.form.submit();
+      });
+    }
+
+    // If there are any error notifications below an input field, focus that field
+    const notificationElm = document.querySelector(".notification-error");
+    if (
+      notificationElm &&
+      notificationElm.previousElementSibling &&
+      typeof notificationElm.previousElementSibling.focus === "function"
+    ) {
+      notificationElm.previousElementSibling.focus();
+    }
+  });
+
+})();
+
+/* || Envato Help Centre JS
+Author: Envato
+Version: 1.1.0
+*/
+
+/* || Annoucement Banner Close Button */
+
+/* || Set Cookies Functions */
+(() => {
+  const getCookie = (name) => {
+    const value = " " + document.cookie;
+    console.log("value", `==${value}==`);
+    const parts = value.split(" " + name + "=");
+    return parts.length < 2 ? undefined : parts.pop().split(";").shift();
+  };
+
+  const setCookie = function (name, value, expiryDays, domain, path, secure) {
+    const exdate = new Date();
+    exdate.setHours(
+      exdate.getHours() +
+        (typeof expiryDays !== "number" ? 365 : expiryDays) * 24
+    );
+    document.cookie =
+      name +
+      "=" +
+      value +
+      ";expires=" +
+      exdate.toUTCString() +
+      ";path=" +
+      (path || "/") +
+      (domain ? ";domain=" + domain : "") +
+      (secure ? ";secure" : "");
+  };
+
+/* || Set Variables */
+
+const $cookiesBanner = document.querySelector(".cookies-function-banner");
+const $cookiesBannerButton = $cookiesBanner.querySelector("button");
+const cookieName = "cookiesBanner";
+const hasCookie = getCookie(cookieName);
+
+/* || Remove class if cookies not present. Expiry 1 day */
+
+if (!hasCookie) {
+  $cookiesBanner.classList.remove("announcehidden");
+}
+
+$cookiesBannerButton.addEventListener("click", () => {
+  setCookie(cookieName, "closed",1);
+  $cookiesBanner.remove();
+});
+})();
+
+/* || Initiate Table of Contents Function */
+
+tocbot.init({
+  // Where to render the table of contents.
+  tocSelector: '.js-toc',
+  // Where to grab the headings to build the table of contents.
+  contentSelector: '.js-toc-content',
+  // Which headings to grab inside of the contentSelector element.
+  headingSelector: 'h1, h2, h3, h4',
+  // For headings inside relative or absolute positioned containers within content.
+  hasInnerContainers: true,
+  // Ignore headings with this selector
+  ignoreSelector: '.js-toc-ignore',
+});
+
+/* Hide sidebar title if toc-list-item not present*/
+
+var elements = $('.toc-list-item');
+if (elements.length === 0) {
+    $('.collapsible-sidebar-title-toggle').hide();
+}
+
+/* || Initiate Prism Code Copy Function */
+
+function initCodeCopy() {
+  const codeBlocks = document.querySelectorAll('code[class*="language-"]');
+  codeBlocks.forEach((block) => {
+    const lang = parseLanguage(block);
+    const referenceEl = block.parentElement;
+    const parent = block.parentElement.parentElement;
+    
+    const wrapper = document.createElement('div');
+    wrapper.className = 'code-wrapper';
+    parent.insertBefore(wrapper, referenceEl);
+    wrapper.append(block.parentElement);
+
+    const copyBtn = document.createElement('button');
+    copyBtn.setAttribute('class', 'copy-button');
+    copyBtn.setAttribute('data-lang', lang);
+    copyBtn.innerHTML = `${lang} <svg viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7 6V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-3v3c0 .552-.45 1-1.007 1H4.007A1.001 1.001 0 0 1 3 21l.003-14c0-.552.45-1 1.007-1H7zM5.003 8L5 20h10V8H5.003zM9 6h8v10h2V4H9v2z" fill="currentColor"/></svg>`;
+
+    wrapper.insertAdjacentElement('beforeend', copyBtn);
+  });
+
+  function parseLanguage(block) {
+    const className = block.className;
+    if (className.startsWith('language')) {
+      const [prefix, lang] = className.split('-');
+      return lang;
+    }
+  }
+
+      async function fallbackCopyTextToClipboard(text) {
+          return new Promise((resolve, reject) => {
+              var textArea = document.createElement('textarea');
+              textArea.value = copyInfo.getText();
+              // Avoid scrolling to bottom
+              textArea.style.top = '0';
+              textArea.style.left = '0';
+              textArea.style.position = 'fixed';
+              document.body.appendChild(textArea);
+              textArea.focus();
+              textArea.select();
+              try {
+                  var successful = document.execCommand('copy');
+                  setTimeout(function () {
+                      if (successful) {
+                          resolve('success')
+                      } else {
+                          reject('error')
+                      }
+                  }, 1);
+              } catch (err) {
+                  setTimeout(function () {
+                      reject(err)
+                  }, 1);
+              } finally {
+                  document.body.removeChild(textArea);
+              }
+          })  
+      }
+  
+      async function copyTextToClipboard(text) {
+          return new Promise((resolve, reject) => {
+              if (navigator.clipboard) {
+                  navigator.clipboard.writeText(text).then(
+                      resolve(), function () {
+                      // try the fallback in case `writeText` didn't work
+                      fallbackCopyTextToClipboard(text).then(
+                          () => resolve(),
+                          () => reject()
+                      )
+                  });
+              } else {
+                  fallbackCopyTextToClipboard(text).then(
+                      () => resolve(),
+                      () => reject()
+                  )
+              }
+          })
+      }
+
+  function copy(e) {
+      const btn = e.currentTarget;
+      const lang = btn.dataset.lang;
+      const text = e.currentTarget.previousSibling.children[0].textContent;
+      copyTextToClipboard(text)
+          .then(
+          () => {
+              btn.innerHTML = `copied! <svg viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7 6V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-3v3c0 .552-.45 1-1.007 1H4.007A1.001 1.001 0 0 1 3 21l.003-14c0-.552.45-1 1.007-1H7zm2 0h8v10h2V4H9v2z" fill="currentColor"/></svg>`;
+              btn.setAttribute('style', 'opacity: 1');
+              
+          },
+          () => alert('failed to copy'),
+      );
+
+      setTimeout(() => {
+          btn.removeAttribute('style');
+          btn.innerHTML = `${lang} <svg viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7 6V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-3v3c0 .552-.45 1-1.007 1H4.007A1.001 1.001 0 0 1 3 21l.003-14c0-.552.45-1 1.007-1H7zM5.003 8L5 20h10V8H5.003zM9 6h8v10h2V4H9v2z" fill="currentColor"/></svg>`;
+      }, 3000);
+  }
+
+  const copyButtons = document.querySelectorAll('.copy-button');
+
+  copyButtons.forEach((btn) => {
+      btn.addEventListener('click', copy);
+  });
+  }
+  initCodeCopy()
+
+  Prism.plugins.NormalizeWhitespace.setDefaults({
+    'remove-trailing': true,
+    'remove-indent': true,
+    'left-trim': true,
+    'right-trim': true,
+    /*'break-lines': 80,
+    'indent': 2,
+    'remove-initial-line-feed': false,
+    'tabs-to-spaces': 4,
+    'spaces-to-tabs': 4*/
+  });

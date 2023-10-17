@@ -1,0 +1,320 @@
+@import './mixin';
+@import './resseting';
+@import './variables';
+
+
+.placeit-bg-part{
+    background-color: #fff;
+    height: 215px;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+    overflow: hidden;
+    @include responsivemin(1025px){
+        height: 475px;
+    }
+    @include responsive(614px){
+        height: 300px;
+    }
+    .image-container {
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 60%;
+        width: 50%;
+        background-image: url('../image/palceit-1.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        @include responsivemin(604px){
+            left: 50%;
+        }
+        @include responsive(604px){
+            left: 50%;
+            width: 100%;
+        }
+    }
+    .copy-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        height: 100%;
+        justify-content: center;
+        padding:40px 20px;
+        position: relative;
+        max-width: 280px;
+        @include responsivemin(414px){
+            max-width: 270px;
+        }
+        @include responsivemin(604px){
+            padding-left: 50px;
+            max-width: 414px;
+        }
+        @include responsivemin(1025px){
+            padding-left: 100px;
+            max-width: 805px;
+        }
+        .title {
+            font-size: 25px;
+            font-weight: 700;
+            line-height: 1.33;
+            color: #000;
+            margin-bottom: 2px;
+            margin-top: 0;
+            z-index: 1;
+            @include responsivemin(1025px){
+                font-size: 50px;
+                line-height: 1.14;
+                margin-bottom: 12px;
+            }
+            strong {
+                color: #8e59cf;
+            }
+        }
+        .subtitle {
+            font-size: 11px;
+            font-weight: 400;
+            color: #303030;
+            line-height: 1.38;
+            margin-bottom: 6px;
+            margin-top: 0;
+            z-index: 1;
+            @include responsivemin(1025px){
+                font-size: 20px;
+                margin-bottom: 15px
+            }
+        }
+        .cta {
+            border-radius: 6px;
+            background-color: #8e59cf;
+            color: #fff;
+            flex-grow: 0;
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 7px 10px;
+            text-decoration: none;
+            z-index: 1;
+            @include responsivemin(1025px){
+                font-size: 20px;
+                margin-bottom: 17px;
+                padding: 11px 20px;
+            }
+        }
+
+       
+    }
+}
+
+.cars-part-placeit{
+    background-color: #fff;
+padding-top: 75px !important;
+padding-bottom: 75px !important;
+  .author-carousel-item{
+    flex-grow: 1;
+    flex-shrink: 0;
+    border-radius: 6px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.08);
+    margin: 20px auto;
+  
+    .img-container {
+        position: relative;
+        a {
+            color: black;
+            text-decoration: underline;
+            img {
+                top: 0;
+                left: 0;
+                object-fit: cover;
+                max-width: 100%;
+                width: 100%;
+                margin: 0;
+                line-height: 1;
+                border: none;
+                border-radius: 6px 6px 0 0;
+            }
+        }
+    }
+
+    .img-description {
+        padding: 10px;
+        a {
+            text-decoration: none;
+            color: black;
+            .category {
+                font-weight: bolder;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+  }
+
+}
+
+.footer-wrapper{
+    background-color: white;
+    margin-left: 0;
+    position: relative;
+    padding: 25px 15px;
+
+    .cta-container {
+        margin: 0 auto;
+        margin-bottom: 150px;
+        max-width: 1250px;
+        flex-grow: 0;
+        padding: 50px 168px 50px 168px;
+        border-radius: 6px;
+        box-shadow: 0 4px 25px 0 rgba(0,0,0,0.15);
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+
+        @include responsive(768px){
+            padding: 20px 50px 20px 50px;
+        }
+      
+       
+        h2 {
+            font-size: 33px;
+        font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: #303030;
+            margin-top: 0;
+            margin-bottom: 40px;
+            @include responsive(992px){
+                font-size: 26px;
+            }
+            @include responsive(548px){
+                font-size: 21px;
+            }
+        }
+        .cta-content {
+            display: flex;
+            flex-grow: 1;
+            height: 80%;
+            @include responsive(992px){
+                height: 100%;
+                width: 100%;
+                flex-direction: column;
+            }
+            .cta-content-image {
+                flex-grow: 1;
+                width: 50%;
+                padding-right: 50px;
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+                @include responsive(992px){
+                    width: 100%;
+                    padding-right: 0px;
+                }
+            }
+            .cta-content-controls {
+                flex-grow: 1;
+                margin: auto;
+                width: 50%;
+                @include responsive(992px){
+                    width: 100%;
+                }
+                .cta-content-controls-buttons {
+                    display: none;
+                    flex-grow: 1;
+                    // .plan-button-wrapper {
+                    //     flex-grow: 1;
+                    //     text-align: center;
+                    //     width: 50%;
+                    //     &.plan-monthly {
+                    //         margin-right: 10px;
+                    //     }
+                    //     .cta-button {
+                    //         font-size: 20px;
+                    //         font-weight: bold;
+                    //         color: #fff;
+                    //         background-color: #8e59cf;
+                    //         border-radius: 6px;
+                    //         height: 7rem;
+                    //         display: flex;
+                    //         align-items: center;
+                    //         justify-content: center;
+                    //         cursor: pointer;
+                    //         line-height: 1.22;
+                    //         letter-spacing: normal;
+                    //         text-align: center;
+                    //     }
+                    // }
+
+                
+                }
+                .subscription-cta-container {
+                    text-align: center;
+                    font-style: normal;
+                    margin: auto;
+                    font-size: 15px;
+                    .subscription-price-container {
+                        color: #000000;
+                        font-size: 15px;
+                        font-weight: 600;
+                        .subscription-price {
+                            font-size: 48px;
+                            line-height: 72px;
+                        }
+                    }
+                    .subscription-title {
+                        font-weight: 600;
+                        font-size: 32px;
+                        color: #030303;
+                        text-align: center;
+                        @include responsive(548px){
+                            font-size: 22px;
+                            margin-bottom: 10px;
+                        }
+                    }
+
+                    .subscription-subtitle {
+                        font-weight: normal;
+                        font-size: 16px;
+                        line-height: 24px;
+                    }
+                  
+                    button {
+                        font-family: Poppins;
+                        height: 60px;
+                        background: #8000ff;
+                        border: 1px solid #3f0778;
+                        box-sizing: border-box;
+                        border-radius: 8px;
+                        font-weight: 600;
+                        font-size: 24px;
+                        line-height: 36px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: #ffffff;
+                        margin: auto;
+                        cursor: pointer;
+                        width: 100%;
+                        max-width: 265px;
+                        margin-bottom: 20px;
+                    }
+
+                    .subscription-info-footer {
+                        font-size: 11px;
+                        text-align: center;
+                        line-height: normal;
+                        p {
+                            margin: 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+

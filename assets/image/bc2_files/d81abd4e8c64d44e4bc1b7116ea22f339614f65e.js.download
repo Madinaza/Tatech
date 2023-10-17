@@ -1,0 +1,37 @@
+// MW-Notification Banner
+document.addEventListener('DOMContentLoaded', async function () {
+  // Article label to be considered for the alerts
+  const label = 'envato-notification-ON'
+
+  // Show the article body within the alertbox? (Boolean: true/false)
+  const showArticleBody = true
+
+  // Get current help center locale
+  const locale = document
+    .querySelector('html')
+    .getAttribute('lang')
+    .toLowerCase()
+
+  // URL to be called to get the alert data
+  const url = `/api/v2/help_center/${locale}/articles.json?label_names=${label}`
+
+  // Raw data collected from the endpoint above
+  const data = await (await fetch(url)).json()
+
+  // List of articles returned
+  const articles = (data && data.articles) || []
+
+  // Handle returned articles
+  for (let i = 0; i < articles.length; i++) {
+    const url = articles[i].html_url
+    const title = articles[i].title
+    const body = articles[i].body
+
+    const html = `<p>${showArticleBody ? body : ''}</p>`
+
+    // Append current alert to the alertbox container
+    document.querySelector('.envato-notification-banner-message').insertAdjacentHTML('beforeend', html)
+    var element = document.getElementById("envato-notification-banner");
+    element.classList.remove("envato-notification-banner-toggle");
+  }
+});

@@ -1,0 +1,234 @@
+/* || Envato Help Centre JS
+Author: Envato
+Version: 1.1.0
+*/
+
+/* || Tabs JS */
+
+$(document).on('click', '.tabs > li > a', function(e) {
+  e.preventDefault();
+  var $parent = $(this).parent();
+  if ($parent.is('.selected')) {
+  // mobile support
+  $(this).closest('ul').addClass('active');
+} 
+else {
+  var target = $(this).attr('href');
+  $(target).siblings().removeClass('selected');
+  $(target).addClass('selected');
+  
+  $parent.siblings().removeClass('selected');
+  $parent.addClass('selected');
+  // mobile support
+  $(this).closest('ul').removeClass('active');
+}
+});
+
+/* Envato Design Accordion */
+(function() {
+  const toggleItem = (item) =>
+      item.classList.toggle('open');
+
+ const onClick = (item, event) => {
+    // don't toggle if it's a tab that has been clicked
+    const headingClicked = (event.target == item.children[0] || $(event.target).parents('div')[0] == item.children[0]);
+    if ($(event.target).parents('.tabs').length == 0 && headingClicked) {
+      toggleItem(item);
+    }
+  }
+
+  const onKeyDown = (item, event) => {
+      if (event.key === " ") {
+          event.preventDefault();
+      }
+
+      if (event.key === "Enter") {
+          event.preventDefault();
+          toggleItem(item);
+      }
+  }
+
+  const onKeyUp = (item, event) => {
+      if (event.key === " ") {
+          event.preventDefault();
+          toggleItem(item);
+      }
+  }
+
+  const initializeItem = (item) => {
+      item.setAttribute('tabindex', 0);
+      item.addEventListener('click', onClick.bind(undefined, item));
+      item.addEventListener('keydown', onKeyDown.bind(undefined, item));
+      item.addEventListener('keyup', onKeyUp.bind(undefined, item));
+  }
+
+  const initializeAccordion = (accordion) =>
+      accordion.querySelectorAll('li').forEach(initializeItem);
+
+  const initialize = () =>
+      document.querySelectorAll('ul.accordion').forEach(initializeAccordion);
+
+  document.addEventListener('DOMContentLoaded', initialize);
+})();  
+
+/* || Show/Hide User Roles */
+
+// Sections, Div, Lists, Span, H1 and H2 conditions
+
+$(() => {
+
+  if (HelpCenter.user.role=="anonymous"){
+      $("section.anonymous").show();
+      $("div.anonymous").show();
+      $("li.anonymous").show();
+      $("span.anonymous").show();
+      $("h1.anonymous").show();
+      $("h2.anonymous").show();
+  }
+        
+  if (HelpCenter.user.role=="end_user"){
+      $("section.end_user").show();
+      $("div.end_user").show();
+      $("li.end_user").show();
+      $("span.end_user").show();
+      $("h1.end_user").show();
+      $("h2.end_user").show();
+  }
+        
+  if (HelpCenter.user.role=="agent"){
+      $("section.agent").show();
+      $("div.agent").show();
+      $("li.agent").show();
+      $("span.agent").show();
+      $("h1.agent").show();
+      $("h2.agent").show();
+  }
+        
+  if (HelpCenter.user.role=="manager"){
+      $("section.manager").show();
+      $("div.manager").show();
+      $("li.manager").show();
+      $("span.manager").show();
+      $("h1.manager").show();
+      $("h2.manager").show();
+  }   
+  
+  });
+
+$(document).ready(function() {
+ 
+/* || Submit Button Data Layer Push */
+$('a#submit438uygbe').click(function(){
+    var buttonToTrack = $('a#submit438uygbe');
+   // GA4
+  dataLayer.push({
+      'event': 'user_event',
+      'event_name' : 'cta',
+      'link_domain': buttonToTrack[0].hostname, 
+      'context': buttonToTrack.data('location'),
+      'link_text': 'submit_a_request',
+      'link_url': buttonToTrack[0].href,
+      'outbound': false,
+  });
+      
+   // UA/GA3
+  dataLayer.push({
+      'event': 'click',
+      'event_category': 'cta',
+      'event_action': `click - ${buttonToTrack[0].href}`,
+      'event_label': 'submit_a_request',
+      });
+  })
+
+/* || End Submit Button Data Layer Push */
+
+/* || Shows Helpful Hacker SupportText */
+if(location.search == '?ticket_form_id=38490'){
+    // Hide the default form description and show the Helpful Hacker description
+    $('#default-form-description').css('display','none');
+    $('#helpful-hacker-description').css('display','block');
+    // Start Helpful Hacker form customisation
+  	$('.form-field.select.optional.request_ticket_form_id').css('display','none');
+  	// End Helpful Hacker form customisation    
+}
+// End Helpful Hacker Support form customisation
+
+/* || START system ticket field descriptions variable definitions (Email field) */
+
+$('#new_request.request-form label:contains("Your email address")').parent().append('<p>Please provide the email address associated with your Envato account.</p>'); 
+
+// END system ticket field descriptions variable definitions (Email field)
+
+/* || Start PAF Form order */  
+
+/* || Insert Contact details heading */
+$('div[class=form-field]').first().after("<h2 class='call-out-title navigation-hero-title contact-details-heading-form'>Contact details</h2>");	
+
+// rearrange form fields for 'Tell us more' 
+
+$('#new_request.request-form label:contains("Tell us more")').parent().insertBefore('#new_request.request-form label:contains("In a few words, tell us what your enquiry is about")'); 
+$('#new_request.request-form label:contains("In a few words, tell us what your enquiry is about")').addClass( "subject-field-envato" );
+
+// rearrange form fields for 'If so, what is your username?' 
+
+$('#new_request.request-form label:contains("If so, what is your Envato username?")').parent().insertAfter('#new_request.request-form h2:contains("Contact details")'); 
+
+// rearrange form fields for 'Did you checkout as a guest?'
+$('#new_request.request-form label:contains("Did you checkout as a guest?")').parent().insertBefore('#new_request.request-form h2:contains("Contact details")');   
+
+// rearrange form fields for 'Do you have an Envato account?' 
+
+$('#new_request.request-form label:contains("Do you have an Envato account?")').parent().insertAfter('#new_request.request-form h2:contains("Contact details")');
+
+// rearrange form fields for 'Email address' 
+
+$('#new_request.request-form label:contains("Your email address")').parent().insertAfter('#new_request.request-form h2:contains("Contact details")');  
+
+// rearrange form fields for 'Your name' 
+
+$('#new_request.request-form label:contains("Your name")').parent().insertAfter('#new_request.request-form h2:contains("Contact details")');
+
+/* End PAF Form order */  
+
+/* || Insert Privacy Policy link */
+$('input[name=commit][value=Submit]').first().after("<hr class='privacypolicy'>");	
+$('hr[class=privacypolicy]').first().after("<a target='_blank' class='privacypolicy' href='https://envato.com/privacy/'>Privacy Policy</a>");	
+
+
+// START custom ticket field descriptions variable definitions (Transaction ID field)
+                                                
+var custom_field_24730363 = ' <p>If applicable, learn more about <a target="_blank"  href="https://help.market.envato.com/hc/en-us/articles/115000348866" >how to find your transaction ID.</a> </p>';
+$( "div.request_custom_fields_24730363 p" ).html( custom_field_24730363 );
+
+// END custom ticket field descriptions variable definitions (Transaction ID field)
+
+/* || Show Hide Helpful Hacker form from anyone not within the Envato organisation https://support.zendesk.com/hc/en-us/articles/204579603-Hide-ticket-forms-based-on-user-s-organization-Professional-Add-on-and-Enterprise- */
+
+var i = 0;
+var cZendesk = false; //assume user is not part of the Zendesk Organization
+//reserve space for additional organizations
+var checkExist = setInterval(function() {
+    i++;
+    if ($("a.nesty-input").length){
+        clearInterval(checkExist);
+        $("a.nesty-input").each(function() {
+            $(this).bind( "click", function() {
+                for (var c in HelpCenter.user.organizations) {
+                   if (HelpCenter.user.organizations[c].name == "Envato"){
+                    cZendesk = true; //if user is part of the organization called "ZENDESK", then set its variable to true.
+                   }
+                   //reserve space for additional organizations
+                   }
+                   if (!cZendesk){
+                    $("#38490").remove(); //remove the "TICKET_FORM_ID" with the proper id from the dropdown list. Leave the pound sign intact. Removes Helpful Hacker form
+                   }
+             //reserve space for additional organizations
+             });
+          });
+       }
+       if (i > 10){
+        clearInterval(checkExist);
+       }
+    }, 100);
+
+});

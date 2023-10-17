@@ -1,0 +1,96 @@
+@import './mixin';
+@import './resseting';
+@import './variables';
+
+ol{
+    padding-left: 10px;
+}
+
+.page_layout_with_header_contentWithTopPadding__3Md4C {
+    position: relative;
+    z-index: 1;
+   
+    .centered_section_wrapper_root__3qcUu {
+        padding: 0 20px;
+        @include responsive(578px){
+            padding: 70px 10px;
+        }
+        @include responsivemin(578px){
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 0 32px;
+            .pure_document_root__251K1 {
+                color: #262630;
+                max-width: 752px;
+                margin: 80px auto;
+                
+                a{
+                    color: #008c8e;
+                    text-decoration: none;
+                    font-weight: 500;
+                   
+                }
+                .pure_document_titleContainer__3PSWa {
+                    margin-bottom: 40px;
+                    .pure_document_title__MjKhO {
+                        display: block;
+                        text-align: center;
+                        font-size: 40px;
+                        .text_mega__HPxmR {
+                            color: #131419;
+                            font-size: 2.5rem;
+                            font-weight:600;
+                            letter-spacing: -.025em;
+                            line-height: 1.25;
+                            margin: 20px 0px;
+                            text-align: center;
+                            @include responsivemin(561px){
+                                font-size: 3.0rem;
+                            }
+                            @include responsivemin(1025px){
+                                font-size: 3.5rem;
+                            }
+                           
+                        }
+                    }
+                }
+                h2 {
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    margin-bottom: 2rem;
+                }
+                
+                    ol {
+                      
+                        list-style-type: decimal;
+                        margin-bottom: 30px;
+                     
+                       
+                     
+                        li{
+                            &:not(:last-child) {
+                                margin-bottom: 16px;
+                            }
+                         
+                         
+                          
+                        }
+                        ol{
+                            list-style-type: lower-alpha;
+                            margin: 20px 0 30px;
+                            padding-left: 25px;
+                            
+                            ol{
+                                list-style-type: lower-roman;
+                                @include responsive(350px){
+                                    padding-left: 0px !important;
+                                }
+                            }
+                        }
+                    }
+                
+                  
+            }
+        }
+    }
+}
